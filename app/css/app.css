@@ -28,3 +28,12 @@
   content: "";
   padding: 0;
 }
+
+#inactiveBetsDiv {
+  width: 50%;
+}
+
+#bet-list-item {
+  border: 2px solid gray;
+  padding: 10px;
+}
