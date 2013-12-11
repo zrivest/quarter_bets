@@ -8,7 +8,7 @@
   <script src='https://cdn.firebase.com/v0/firebase.js'></script>
   <script src='https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js'></script>
 </head>
-<body>
+<body ng-controller='MyCtrl1'>
   <ul class="menu">
     <li><a href="#/view1">Create Bet!</a></li>
     <li><a href="#/view2">view2</a></li>
@@ -17,8 +17,18 @@
 
   <div ng-view></div>
 
-<!--   <div id="messagesDiv">
-    <div ng-repeat="bet in bets"><em>{{bet.from}}</em>: {{bet.body}}</div>
+  <div id="inactiveBetsDiv">
+    <ul>
+      <li ng-repeat="bet in inactiveBetsList" id='bet-list-item'><em>{{bet.description}}</em>: {{bet.wagerAmount}}<button ng-click="takeBet(bet)">Take Bet</button></li>
+    </ul>
+  </div>
+
+  <pre>betparams = {{betparams | json}}</pre>
+
+  <!-- <div id="activeBetsDiv">
+    <ul>
+      <li ng-repeat="bet in activeBetsList" id='bet-list-item'><em>{{bet.description}}</em>: {{bet.wagerAmount}}<button ng-click="takeBet(bet)">Take Bet</button></li>
+    </ul>
   </div> -->
 
   <div>Angular seed app: v<span app-version></span></div>
