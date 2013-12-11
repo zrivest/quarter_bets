@@ -2,17 +2,19 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('myApp', [
+var quartersApp = angular.module('quartersApp', [
   'ngRoute',
-  'myApp.filters',
-  'myApp.services',
-  'myApp.directives',
-  'myApp.controllers',
+  'quartersApp.filters',
+  'quartersApp.services',
+  'quartersApp.directives',
+  'quartersControllers',
   'firebase'
-]).
-config(['$routeProvider', function($routeProvider) {
+]);
+
+quartersApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {templateUrl: 'partials/create-bet.html', controller: 'MyCtrl1'});
   $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
   $routeProvider.when('/view3', {templateUrl: 'partials/partial3.html', controller: 'MyCtrl3'});
   $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+}]).
+constant('FBURL', 'https://quarter-bets-whammy.firebaseio.com/')

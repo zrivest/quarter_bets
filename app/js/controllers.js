@@ -2,20 +2,28 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', [])
-  .controller('MyCtrl1', ['$scope', 'angularFire',function() {
-    var ref = new Firebase("https://quarter-bets.firebaseio.com/");
-    $scope.bets = [];
+var quartersControllers = angular.module('quartersControllers', []);
+
+quartersControllers.controller('MyCtrl1', ['$scope', 'angularFire',
+  function($scope, angularFire){
+    var ref = new Firebase("https://quarter-bets-whammy.firebaseio.com/");
+    
+    $scope.betsList = [];
     angularFire(ref, $scope, "bets");
-    $scope.addBet = function(e) {
-      if (e.keyCode != 13) return;
-      $scope.bets.push({from: $scope.bet, body: $scope.wager});
-      $scope.bet = "";
+    $scope.addBet = function(betInfo) {
+      var params = angular.copy(betInfo)
+      $scope.master = params
+      $scope.betsList.push({description: $scope.description, body: $scope.wagerAmount});
     };
-  }])
-  .controller('MyCtrl2', ['angularFire', function() {
 
-  }])
-  .controller('MyCtrl3', ['angularFire', function() {
+}]);
 
-  }]);
+quartersControllers.controller('MyCtrl2', ['$scope', 'angularFire',
+  function($scope, angularFire) {
+
+}]);
+
+quartersControllers.controller('MyCtrl3', ['$scope', 'angularFire',
+  function($scope, angularFire) {
+
+}]);

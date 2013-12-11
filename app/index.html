@@ -1,9 +1,12 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="quartersApp">
 <head>
   <meta charset="utf-8">
   <title>My AngularJS App</title>
   <link rel="stylesheet" href="css/app.css"/>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js'></script>
+  <script src='https://cdn.firebase.com/v0/firebase.js'></script>
+  <script src='https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js'></script>
 </head>
 <body>
   <ul class="menu">
@@ -14,9 +17,9 @@
 
   <div ng-view></div>
 
-  <div id="betsDiv">
-    <div ng-repeat="bet in bets"><em>{{bet.bet}}</em>: {{bet.wager}}</div>
-  </div>
+<!--   <div id="messagesDiv">
+    <div ng-repeat="bet in bets"><em>{{bet.from}}</em>: {{bet.body}}</div>
+  </div> -->
 
   <div>Angular seed app: v<span app-version></span></div>
 
@@ -30,9 +33,5 @@
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>
-
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js'></script>
-  <script src='https://cdn.firebase.com/v0/firebase.js'></script>
-  <script src='https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js'></script>
-</body>
+  </body>
 </html>
