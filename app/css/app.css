@@ -29,11 +29,24 @@
   padding: 0;
 }
 
+#container {
+  display: inline-block;
+  width: 100%;
+}
+
 #inactiveBetsDiv {
-  width: 50%;
+  float: left;
+  width: 48%;
+}
+
+#activeBetsDiv {
+  list-style-type: none;
+  float: right;
+  width: 48%;
 }
 
 #bet-list-item {
+  list-style-type: none;
   border: 2px solid gray;
   padding: 10px;
 }
