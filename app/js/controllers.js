@@ -6,11 +6,14 @@ var quartersControllers = angular.module('quartersControllers', []);
 
 quartersControllers.controller('MyCtrl1', ['$scope', 'angularFire',
   function($scope, angularFire){
-    var ref = new Firebase("https://quarter-bets-whammy.firebaseio.com/");
+    var inactivebets = new Firebase("https://quarter-bets-whammy.firebaseio.com/inactivebets");
+    var activebets = new Firebase("https://quarter-bets-whammy.firebaseio.com/activebets");
 
     $scope.inactiveBetsList = [];
     $scope.activeBetsList = [];
-    angularFire(ref, $scope, "inactiveBetsList", "activeBetsList");
+
+    angularFire(inactivebets, $scope, "inactiveBetsList");
+    angularFire(activebets, $scope, "activeBetsList");
 
     $scope.addBet = function(betInfo) {
       $scope.inactiveBetsList = $scope.inactiveBetsList.clean();
@@ -22,8 +25,6 @@ quartersControllers.controller('MyCtrl1', ['$scope', 'angularFire',
     };
 
     $scope.takeBet = function(betInfo) {
-
-      console.log($scope.activeBetsList)
 
       var betparams = angular.copy(betInfo)
       $scope.activeBetsList.push({description: betparams.description, wagerAmount: betparams.wagerAmount});
