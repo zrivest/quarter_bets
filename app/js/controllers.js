@@ -6,27 +6,30 @@ var quartersControllers = angular.module('quartersControllers', []);
 
 quartersControllers.controller('MyCtrl1', ['$scope', 'angularFire',
   function($scope, angularFire){
-    var ref = new Firebase("https://quarter-bets-whammy.firebaseio.com/");
-    
+    var inactivebets = new Firebase("https://quarter-bets-whammy.firebaseio.com/inactivebets");
+    var activebets = new Firebase("https://quarter-bets-whammy.firebaseio.com/activebets");
+
     $scope.inactiveBetsList = [];
     $scope.activeBetsList = [];
-    angularFire(ref, $scope, "inactiveBetsList", "activeBetsList");
+
+    angularFire(inactivebets, $scope, "inactiveBetsList");
+    angularFire(activebets, $scope, "activeBetsList");
 
     $scope.addBet = function(betInfo) {
       $scope.inactiveBetsList = $scope.inactiveBetsList.clean();
       $scope.activeBetsList = $scope.activeBetsList.clean();
+
       var params = angular.copy(betInfo)
       $scope.inactiveBetsList.push({description: params.description, wagerAmount: params.wagerAmount});
       $scope.master = $scope.inactiveBetsList
     };
 
     $scope.takeBet = function(betInfo) {
-      $scope.inactiveBetsList = $scope.inactiveBetsList.clean();
-      $scope.activeBetsList = $scope.activeBetsList.clean();
-      var test = betInfo
+
       var betparams = angular.copy(betInfo)
       $scope.activeBetsList.push({description: betparams.description, wagerAmount: betparams.wagerAmount});
-      $scope.betparams = test 
+      $scope.inactiveBetsList.remove($scope.inactiveBetsList.indexOf(betInfo));
+      $scope.betparams = betInfo
     }
 
     Array.prototype.clean = function() {
@@ -35,6 +38,12 @@ quartersControllers.controller('MyCtrl1', ['$scope', 'angularFire',
       })
       return new_array;
     }
+
+    Array.prototype.remove = function(from, to) {
+      var rest = this.slice((to || from) + 1 || this.length);
+      this.length = from < 0 ? this.length + from : from;
+      return this.push.apply(this, rest);
+    };
 
 }]);
 

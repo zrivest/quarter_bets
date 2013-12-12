@@ -17,19 +17,21 @@
 
   <div ng-view></div>
 
-  <div id="inactiveBetsDiv">
-    <ul>
-      <li ng-repeat="bet in inactiveBetsList" id='bet-list-item'><em>{{bet.description}}</em>: {{bet.wagerAmount}}<button ng-click="takeBet(bet)">Take Bet</button></li>
-    </ul>
+  <div id='container'>
+    <div id="inactiveBetsDiv">
+      <ul>
+        <li ng-repeat="bet in inactiveBetsList" id='bet-list-item'><em>{{bet.description}}</em>: {{bet.wagerAmount}}<button ng-click="takeBet(bet)">Take Bet</button></li>
+      </ul>
+    </div>
+    <div id="activeBetsDiv">
+      <ul>
+        <li ng-repeat="bet in activeBetsList" id='bet-list-item'><em>{{bet.description}}</em>: {{bet.wagerAmount}}</li>
+      </ul>
+    </div>
   </div>
 
   <pre>betparams = {{betparams | json}}</pre>
 
-  <!-- <div id="activeBetsDiv">
-    <ul>
-      <li ng-repeat="bet in activeBetsList" id='bet-list-item'><em>{{bet.description}}</em>: {{bet.wagerAmount}}<button ng-click="takeBet(bet)">Take Bet</button></li>
-    </ul>
-  </div> -->
 
   <div>Angular seed app: v<span app-version></span></div>
 
