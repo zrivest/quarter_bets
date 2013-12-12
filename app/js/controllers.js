@@ -50,6 +50,7 @@ quartersControllers.controller('MyCtrl1', ['$scope', 'angularFire',
 quartersControllers.controller('MyCtrl2', ['$scope', 'angularFire',
   function($scope, angularFire) {
 
+
 }]);
 
 quartersControllers.controller('MyCtrl3', ['$scope', 'angularFire',
