@@ -28,6 +28,7 @@ quartersControllers.controller('MyCtrl1', ['$scope', 'angularFire',
 
       var betparams = angular.copy(betInfo)
       $scope.activeBetsList.push({description: betparams.description, wagerAmount: betparams.wagerAmount});
+      $scope.inactiveBetsList.remove($scope.inactiveBetsList.indexOf(betInfo));
       $scope.betparams = betInfo
     }
 
@@ -37,6 +38,12 @@ quartersControllers.controller('MyCtrl1', ['$scope', 'angularFire',
       })
       return new_array;
     }
+
+    Array.prototype.remove = function(from, to) {
+      var rest = this.slice((to || from) + 1 || this.length);
+      this.length = from < 0 ? this.length + from : from;
+      return this.push.apply(this, rest);
+    };
 
 }]);
 
