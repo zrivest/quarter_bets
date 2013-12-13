@@ -1,49 +1,37 @@
 <!doctype html>
 <html lang="en" ng-app="quartersApp">
-<head>
-  <meta charset="utf-8">
-  <title>My AngularJS App</title>
-  <link rel="stylesheet" href="css/app.css"/>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js'></script>
-  <script src='https://cdn.firebase.com/v0/firebase.js'></script>
-  <script src='https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js'></script>
-</head>
-<body ng-controller='MyCtrl1'>
-  <ul class="menu">
-    <li><a href="#/view1">Create Bet!</a></li>
-    <li><a href="#/view2">view2</a></li>
-    <li><a href="#/view3">view3</a></li>
-  </ul>
+  <head>
+    <meta charset="utf-8">
+    <title>My AngularJS App</title>
+    <link rel="stylesheet" href="css/app.css"/>
+    <link rel="stylesheet" href="lib/bootstrap/docs/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="lib/bootstrap/docs/assets/css/bootstrap-responsive.css" />
+  </head>
+  <body>
 
-  <div ng-view></div>
+    <header data-ng-include="'views/header.html'" class="navbar navbar-fixed-top navbar-inverse ng-scope"></header>
 
-  <div id='container'>
-    <div id="inactiveBetsDiv">
-      <ul>
-        <li ng-repeat="bet in inactiveBetsList" id='bet-list-item'><em>{{bet.description}}</em>: {{bet.wagerAmount}}<button ng-click="takeBet(bet)">Take Bet</button></li>
-      </ul>
-    </div>
-    <div id="activeBetsDiv">
-      <ul>
-        <li ng-repeat="bet in activeBetsList" id='bet-list-item'><em>{{bet.description}}</em>: {{bet.wagerAmount}}</li>
-      </ul>
-    </div>
-  </div>
+    <section class="content">
+      <section class="container">
+        <div ng-view></div>
+      </section>
+    </section>
 
-  <pre>betparams = {{betparams | json}}</pre>
+    <script src="http://static.firebase.com/v0/firebase.js"></script>
+    <script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="lib/angular-route/angular-route.min.js"></script>
+    <script src="lib/angular-fire/angularFire.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
 
+    <script src="js/controllers/headercontroller.js"></script>
+    <script src="js/controllers/signincontroller.js"></script>
+    <script src="js/controllers/signupcontroller.js"></script>
+    <script src="js/controllers/createbetcontroller.js"></script>
 
-  <div>Angular seed app: v<span app-version></span></div>
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-  -->
-  <script src="lib/angular/angular.js"></script>
-  <script src="lib/angular/angular-route.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/services.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/directives.js"></script>
+    <script src="js/services/loginservice.js"></script>
+    <script src="js/services/profilecreator.js"></script>
   </body>
 </html>
